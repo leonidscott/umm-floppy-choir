@@ -1,0 +1,49 @@
+---
+- hosts: servers
+  vars:
+    node_version: node_0.12
+    node_repo: "deb https://deb.nodesource.com/{{ node_version }} {{ ansible_distribution_release }} main"
+  remote_user: pi
+  become: yes
+  become_method: su
+  tasks:
+  - name: enable APT over HTTPS
+    apt:
+      install_recommends: no
+      name: apt-transport-https
+      state: present
+      update_cache: yes
+  - name: install NodeSource APT key
+    apt_key:
+      keyserver: hkp://pool.sks-keyservers.net
+      id: 9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280
+      state: present
+  - name: add NodeSource APT repository
+    apt_repository:
+      repo: "{{ node_repo }}"
+      state: present
+  - name: install required packages
+    apt:
+      install_recommends: no
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    with_items:
+    - build-essential
+    - git
+    - nodejs
+    - python
+  - name: install process manager
+    npm:
+      global: yes
+      name: strong-pm
+      state: present
+  - name: register process manager service
+    command: sl-pm-install --force --systemd
+    notify:
+    - start process manager
+  handlers:
+  - name: start process manager
+    service:
+      name: strong-pm
+      state: started
