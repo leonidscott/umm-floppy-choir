@@ -1,18 +1,22 @@
 #include <TimerOne.h>
 
-// timing loop resolution (microseconds):
-const byte LOOP_RESOLUTION = 50000;
+// timing loop period (microseconds)
+#define LOOP_RESOLUTION 40;
 
 // head position range
-const byte HEAD_MIN = 0;
-const byte HEAD_MAX = 150;
+#define HEAD_MIN 0;
+#define HEAD_MAX 150;
 
 // number of drives
-const byte DRIVE_COUNT = 1;
+#define DRIVE_COUNT 1;
 
 // starting step control pin
-// when looping, we assume step control pins occur every two pins
-const byte STARTING_PIN = 2;
+#define STARTING_PIN 2;
+// we assume step control pins occur on evens and direction pins occur on odds
+// (so for drive 1, step control is pin 4 and direction is pin 5)
+
+// interesting Stack Overflow discussion of #define vs. static const:
+// http://stackoverflow.com/questions/1674032/static-const-vs-define-in-c
 
 // head directions (by drive):
 byte directions[] = {
@@ -20,7 +24,7 @@ byte directions[] = {
 };
 
 // active frequencies (by drive):
-byte frequencies[] = {
+int frequencies[] = {
   0
 };
 
@@ -31,36 +35,33 @@ byte positions[] = {
 
 // elapsed ticks (by drive):
 // used to know when to step
-byte ticks[] = {
+int ticks[] = {
   0
 };
-
-// first run (used for initial reset):
-boolean first = true;
 
 void setup() {
   // set all needed pin modes
   pinMode(2, OUTPUT); // 0: step control
   pinMode(3, OUTPUT); // 0: direction
 
+  // set the drives to starting position if they aren't already
+  resetDrives();
+  delay(2000);
+
   // initialize the timing loop
-  //Timer1.initialize(LOOP_RESOLUTION);
-  //Timer1.attachInterrupt(tick);
+  Timer1.initialize(LOOP_RESOLUTION);
+  Timer1.attachInterrupt(tick);
 
   // initialize serial interface
   Serial.begin(9600);
 }
 
 void loop() {
-  if (first) {
-    first = false;
-
-    // move all drives to the minimum position
-    resetDrives();
-    delay(2000);
-  }
+  // everything is done within the tick!
 }
 
+// @todo this totally doesn't work... the commented stuff is what the final
+// working result should eventually look like
 void tick() {
   step(0);
 
