@@ -5,10 +5,10 @@ const byte LOOP_RESOLUTION = 40;
 
 // head position range
 const byte HEAD_MIN = 0;
-const byte HEAD_MAX = 150;
+const byte HEAD_MAX = 82;
 
 // number of drives
-const byte DRIVE_COUNT = 1;
+const byte DRIVE_COUNT = 3;
 
 // starting step control pin
 const byte STARTING_PIN = 2;
@@ -17,22 +17,30 @@ const byte STARTING_PIN = 2;
 
 // head directions (by drive):
 byte directions[] = {
+  LOW,
+  LOW,
   LOW
 };
 
 // active periods (by drive):
 int periods[] = {
+  0,
+  0,
   0
 };
 
 // head positions (by drive):
 byte positions[] = {
+  0,
+  0,
   0
 };
 
 // elapsed ticks (by drive):
 // used to know when to step
 int ticks[] = {
+  0,
+  0,
   0
 };
 
@@ -40,6 +48,10 @@ void setup() {
   // set all needed pin modes
   pinMode(2, OUTPUT); // 0: step control
   pinMode(3, OUTPUT); // 0: direction
+  pinMode(4, OUTPUT); // 1: step control
+  pinMode(5, OUTPUT); // 1: direction
+  pinMode(6, OUTPUT); // 2: step control
+  pinMode(7, OUTPUT); // 2: direction
 
   // initialize serial interface
   Serial.begin(9600);
@@ -48,8 +60,9 @@ void setup() {
   resetDrives();
 
   // @todo remove this, it's for testing
-  // should give us a tuning A on drive 0
-  setFrequency(0, 440);
+  setFrequency(0, 73);  // D2
+  setFrequency(1, 110); // A2
+  setFrequency(2, 185); // F#3
 
   // initialize the timing loop
   Timer1.initialize(LOOP_RESOLUTION);
@@ -81,11 +94,9 @@ void step(byte drive) {
 
   if (positions[drive] >= HEAD_MAX) {
     directions[drive] = HIGH;
-    Serial.println("Switched HIGH");
   }
   else if (positions[drive] <= HEAD_MIN) {
     directions[drive] = LOW;
-    Serial.println("Switched LOW");
   }
 
   if (directions[drive] == HIGH) {
