@@ -45,5 +45,6 @@
   handlers:
   - name: start process manager
     service:
+      enabled: yes
       name: strong-pm
       state: started

@@ -133,6 +133,7 @@ void resetDrives() {
   }
 }
 
+// converts a frequency to a period (how often the drive pulses)
 void setFrequency(byte drive, int frequency) {
   if (frequency == 0) {
     periods[drive] = 0;
@@ -142,13 +143,13 @@ void setFrequency(byte drive, int frequency) {
   }
 }
 
-// gets the step pin for a drive
-byte getStepPin(byte drive) {
+// gets the direction pin for a drive
+byte getDirectionPin(byte drive) {
   return STARTING_PIN + (drive * 2);
 }
 
-// gets the direction pin for a drive
-byte getDirectionPin(byte drive) {
+// gets the step pin for a drive
+byte getStepPin(byte drive) {
   return STARTING_PIN + (drive * 2) + 1;
 }
 
