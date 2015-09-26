@@ -7,36 +7,43 @@ const byte LOOP_RESOLUTION = 40;
 const byte HEAD_MIN = 0;
 const byte HEAD_MAX = 82;
 
+// frequency range (A0 through B4)
+const int FREQUENCY_MIN = 27;
+const int FREQUENCY_MAX = 494;
+
 // number of drives
 const byte DRIVE_COUNT = 3;
 
-// starting step control pin
+// starting direction pin
 const byte STARTING_PIN = 2;
-// we assume step control pins occur on evens and direction pins occur on odds
-// (so for drive 1, step control is pin 4 and direction is pin 5)
+// we assume direction pins occur on evens and step pins occur on odds
+// (so for drive 0, direction is pin 2 and step is pin 3)
 
-// head directions (by drive):
+// all of the following arrays need to be initialized with DRIVE_COUNT items...
+// this could maybe be avoided with enums or something
+
+// head directions (by drive)
 byte directions[] = {
   LOW,
   LOW,
   LOW
 };
 
-// active periods (by drive):
+// active periods (by drive)
 int periods[] = {
   0,
   0,
   0
 };
 
-// head positions (by drive):
+// head positions (by drive)
 byte positions[] = {
   0,
   0,
   0
 };
 
-// elapsed ticks (by drive):
+// elapsed ticks (by drive)
 // used to know when to step
 int ticks[] = {
   0,
@@ -44,14 +51,25 @@ int ticks[] = {
   0
 };
 
+// serial command codes
+enum {
+  MESSAGE_READY = 000,
+  MESSAGE_INVALID = 001,
+  MESSAGE_ACTIVE = 010,
+  MESSAGE_RESET_ALL = 011,
+  MESSAGE_RESET_ONE = 012,
+  MESSAGE_SET_FREQUENCY = 020,
+};
+
 void setup() {
-  // set all needed pin modes
-  pinMode(2, OUTPUT); // 0: step control
-  pinMode(3, OUTPUT); // 0: direction
-  pinMode(4, OUTPUT); // 1: step control
-  pinMode(5, OUTPUT); // 1: direction
-  pinMode(6, OUTPUT); // 2: step control
-  pinMode(7, OUTPUT); // 2: direction
+  // sets all needed pins to output
+  for (byte drive = 0; drive < DRIVE_COUNT; drive++) {
+    byte direction = STARTING_PIN + (drive * 2);
+    byte step = direction + 1;
+
+    pinMode(direction, OUTPUT);
+    pinMode(step, OUTPUT);
+  }
 
   // initialize serial interface
   Serial.begin(9600);
@@ -59,18 +77,87 @@ void setup() {
   // set the drives to starting position if they aren't already
   resetDrives();
 
-  // @todo remove this, it's for testing
-  setFrequency(0, 73);  // D2
-  setFrequency(1, 110); // A2
-  setFrequency(2, 185); // F#3
-
   // initialize the timing loop
   Timer1.initialize(LOOP_RESOLUTION);
   Timer1.attachInterrupt(tick);
 }
 
+// handles serial communication
 void loop() {
-  // everything is done within the tick!
+  // each command is four bytes
+  static byte buffer[4];
+  static int index;
+
+  while (Serial.available() > 0) {
+    buffer[index] = Serial.read();
+    index++;
+
+    if (index > 3) {
+      index = 0;
+      process(buffer);
+    }
+  }
+}
+
+// responds to a command
+void process(byte command[4]) {
+  // each response is two bytes
+  byte response[2];
+
+  switch (command[0]) {
+    // simple ping
+  case MESSAGE_READY:
+    response[0] = MESSAGE_READY;
+    break;
+
+    // gets active drive count
+  case MESSAGE_ACTIVE:
+    response[0] = MESSAGE_ACTIVE;
+    response[1] = DRIVE_COUNT;
+    break;
+
+    // resets all drives
+  case MESSAGE_RESET_ALL:
+    resetDrives();
+    response[0] = MESSAGE_RESET_ALL;
+    break;
+
+    // resets one drive
+  case MESSAGE_RESET_ONE:
+    // check to make sure the drive is in bounds
+    if (command[1] < 0 || command[1] >= DRIVE_COUNT) {
+      break;
+    }
+
+    resetDrive(command[1]);
+    response[0] = MESSAGE_RESET_ONE;
+    response[1] = command[1];
+    break;
+
+    // sets a drive to a frequency
+  case MESSAGE_SET_FREQUENCY:
+    // check to make sure the drive is in bounds
+    if (command[1] < 0 || command[1] >= DRIVE_COUNT) {
+      break;
+    }
+
+    int frequency;
+    frequency = command[2] + command[3];
+
+    // check to make sure the frequency is in bounds
+    if (frequency != 0 && (frequency < FREQUENCY_MIN || frequency > FREQUENCY_MAX)) {
+      break;
+    }
+
+    setFrequency(command[1], frequency);
+    break;
+
+  default:
+    response[0] = MESSAGE_INVALID;
+  }
+
+  Serial.write(response[0]);
+  Serial.write(response[1]);
 }
 
 // steps drives according to their frequencies
@@ -87,7 +174,7 @@ void tick() {
   }
 }
 
-// steps a head
+// steps a head, reversing direction if necessary
 void step(byte drive) {
   byte d = getDirectionPin(drive);
   byte s = getStepPin(drive);
@@ -111,6 +198,21 @@ void step(byte drive) {
   digitalWrite(s, LOW);
 }
 
+void resetDrive(byte drive) {
+  directions[drive] = LOW;
+  periods[drive] = 0;
+  positions[drive] = 0;
+  ticks[drive] = 0;
+
+  for (byte step = HEAD_MIN; step <= HEAD_MAX; step++) {
+    digitalWrite(getDirectionPin(drive), HIGH);
+    digitalWrite(getStepPin(drive), HIGH);
+    digitalWrite(getStepPin(drive), LOW);
+
+    delay(5);
+  }
+}
+
 // sets everything to a clean starting state
 void resetDrives() {
   // set everything we track to 0
@@ -121,7 +223,7 @@ void resetDrives() {
     ticks[drive] = 0;
   }
 
-  // the drives won't go past 0, so that's cool
+  // the drives won't go past 0, so no worries about wrecking stuff
   for (byte step = HEAD_MIN; step <= HEAD_MAX; step++) {
     for (byte drive = 0; drive < DRIVE_COUNT; drive++) {
       digitalWrite(getDirectionPin(drive), HIGH);
@@ -152,4 +254,5 @@ byte getDirectionPin(byte drive) {
 byte getStepPin(byte drive) {
   return STARTING_PIN + (drive * 2) + 1;
 }
+
 
