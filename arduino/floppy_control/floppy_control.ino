@@ -80,6 +80,10 @@ void setup() {
   // initialize the timing loop
   Timer1.initialize(LOOP_RESOLUTION);
   Timer1.attachInterrupt(tick);
+  
+  // send a ready notification
+  Serial.write(MESSAGE_READY);
+  Serial.write(0);
 }
 
 // handles serial communication

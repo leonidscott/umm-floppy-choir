@@ -11,7 +11,7 @@ var PORT = process.env.PORT || 3000;
 
 var FloppyController = require('./lib/floppyController');
 
-// var controller = new FloppyController(ARDUINO);
+var controller = new FloppyController(ARDUINO);
 
 
 // Start the web interface and handle events:
