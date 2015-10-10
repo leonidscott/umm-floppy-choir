@@ -11,7 +11,7 @@ var PORT = process.env.PORT || 3000;
 
 var FloppyController = require('./lib/floppyController');
 
-var controller = new FloppyController(ARDUINO);
+// var controller = new FloppyController(ARDUINO);
 
 
 // Start the web interface and handle events:
@@ -23,6 +23,14 @@ var express = require('express'),
 var app = express(),
     server = http.Server(app),
     io = socket(server);
+var bodyParser     =        require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.get('/setFrequency', function(req, res) {
+	// controller.setFrequency(req.param.frequency);
+	res.send('Done: ' + req.param('freq'));
+});
 
 app.use(express.static('public'));
 

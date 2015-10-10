@@ -19,6 +19,9 @@ angular.module('app').controller("MainController", ['$scope', '$http', function(
 
     $scope.stopMusic = function() {
     	console.log('WE STOPPPED IT')
+    	$http.get('/setFrequency?freq=0').success(function(success) {
+    		console.log(success);
+    	});
     }
 
     $scope.triggerNote = function(event) {
