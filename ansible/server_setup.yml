@@ -1,7 +1,7 @@
 ---
 - hosts: servers
   vars:
-    node_version: node_4.x
+    node_version: node_0.12
     node_repo: "deb https://deb.nodesource.com/{{ node_version }} {{ ansible_distribution_release }} main"
   remote_user: pi
   become: yes
@@ -10,7 +10,7 @@
   - name: upgrade packages
     apt:
       update_cache: yes
-      upgrade: yes
+      upgrade: safe
   - name: enable APT over HTTPS
     apt:
       install_recommends: no
@@ -34,20 +34,21 @@
     with_items:
     - build-essential
     - git
+    - nginx
     - nodejs
     - python
-  - name: install process manager
-    npm:
-      global: yes
-      name: strong-pm
-      state: present
-  - name: register process manager service
-    command: sl-pm-install --force --systemd
-    notify:
-    - start process manager
-  handlers:
-  - name: start process manager
+  - name: create app directory
+    file:
+      group: pi
+      owner: pi
+      path: /srv/app
+      state: directory
+  - name: define app service
+    template:
+      dest: /etc/systemd/system/floppy-control-app.service
+      src: templates/service-definition.j2
+  - name: enable app service
     service:
       enabled: yes
-      name: strong-pm
-      state: started
+      name: floppy-control-app
+      state: stopped

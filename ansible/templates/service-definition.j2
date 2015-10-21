@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/bin/node /srv/app/server.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=floppy-control-app
+User=pi
+Group=pi
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

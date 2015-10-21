@@ -4,7 +4,7 @@
 // Grab important stuff from the environment:
 
 var ARDUINO = process.env.ARDUINO;
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 56267;
 
 
 // Connect the controller to the device:
