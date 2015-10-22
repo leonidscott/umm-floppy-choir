@@ -1,3 +1,4 @@
 .strong-pm
 node_modules
 npm_debug.log
+public/libraries

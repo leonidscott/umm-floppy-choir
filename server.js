@@ -18,21 +18,23 @@ var controller = new FloppyController(ARDUINO);
 
 var express = require('express'),
     http = require('http'),
-    socket = require('socket.io');
+    socketio = require('socket.io');
 
 var app = express(),
     server = http.Server(app),
-    io = socket(server);
-var bodyParser     =        require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-
-
-app.get('/setFrequency', function(req, res) {
-	// controller.setFrequency(req.param.frequency);
-	res.send('Done: ' + req.param('freq'));
-});
+    io = socketio(server);
 
 app.use(express.static(__dirname + '/public'));
+
+io.on('connection', function(socket) {
+  socket.on('set frequency', function(drive, frequency) {
+    controller.setFrequency(drive, frequency);
+  });
+
+  socket.on('set note', function(drive, note, accidental, octave) {
+    controller.setNote(drive, note, accidental, octave);
+  });
+});
 
 server.listen(PORT, function() {
   console.info('Server listening on port %d.', PORT);

@@ -1,0 +1,9 @@
+{
+  "name": "umm-floppy-choir",
+  "main": "server.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular-socket-io": "~0.7.0"
+  }
+}
