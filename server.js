@@ -32,7 +32,7 @@ app.get('/setFrequency', function(req, res) {
 	res.send('Done: ' + req.param('freq'));
 });
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 server.listen(PORT, function() {
   console.info('Server listening on port %d.', PORT);
