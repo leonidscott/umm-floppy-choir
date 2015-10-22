@@ -51,4 +51,12 @@
     service:
       enabled: yes
       name: floppy-control-app
-      state: stopped
+  - name: install nginx site
+    template:
+      dest: /etc/nginx/sites-available/default
+      src: templates/nginx-site.j2
+  - name: enable nginx service
+    service:
+      enabled: yes
+      name: nginx
+      state: reloaded
