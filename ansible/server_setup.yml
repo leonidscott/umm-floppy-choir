@@ -47,6 +47,11 @@
     template:
       dest: /etc/systemd/system/floppy-control-app.service
       src: templates/service-definition.j2
+  - name: install node dependencies
+    npm:
+      global: yes
+      name: bower
+      state: present
   - name: enable app service
     service:
       enabled: yes
