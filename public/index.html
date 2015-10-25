@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet"  type="text/css" href="/styles/main.css">
 </head>
 
 <body ng-app="app" ng-controller="MainController as main">
@@ -35,13 +36,13 @@
 		</div>
 		<div class="hidden-xs col-sm-8 col-sm-offset-4">
 		  	<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" class="btn btn-default" ng-click="note = 'A'">A</button>
-			  <button type="button" class="btn btn-default" ng-click="note = 'B'">B</button>
-			  <button type="button" class="btn btn-default" ng-click="note = 'C'">C</button>
-			  <button type="button" class="btn btn-default" ng-click="note = 'D'">D</button>
-			  <button type="button" class="btn btn-default" ng-click="note = 'E'">E</button>
-			  <button type="button" class="btn btn-default" ng-click="note = 'F'">F</button>
-			  <button type="button" class="btn btn-default" ng-click="note = 'G'">G</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'A'}" ng-click="note = 'A'">A</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'B'}" ng-click="note = 'B'">B</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'C'}" ng-click="note = 'C'">C</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'D'}" ng-click="note = 'D'">D</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'E'}" ng-click="note = 'E'">E</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'F'}" ng-click="note = 'F'">F</button>
+			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'G'}" ng-click="note = 'G'">G</button>
 			</div>
 			Current note is: {{note}}{{(flat)?'&#9837':''}}{{(sharp)?'#':''}}
 		</div>
