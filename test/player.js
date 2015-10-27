@@ -4,7 +4,7 @@ var assert = require('assert'),
 
 describe('Player', function() {
   describe('#load(notes)', function() {
-    it('correctly converts note hashes to change hashes', function() {
+    it('correctly converts note hashes to a change map', function() {
       var p = new Player();
 
       var notes = [
@@ -59,68 +59,30 @@ describe('Player', function() {
       ];
 
       var changes = {
-        0: [
-          {
-            drive: 0,
-            frequency: music.toFrequency('C', music.NATURAL, 2)
-          },
-          {
-            drive: 1,
-            frequency: music.toFrequency('E', music.NATURAL, 2)
-          }
-        ],
-        500: [
-          {
-            drive: 1,
-            frequency: 0
-          }
-        ],
-        1000: [
-          {
-            drive: 0,
-            frequency: 0
-          },
-          {
-            drive: 0,
-            frequency: music.toFrequency('D', music.NATURAL, 2)
-          },
-          {
-            drive: 1,
-            frequency: music.toFrequency('F', music.NATURAL, 2)
-          }
-        ],
-        1500: [
-          {
-            drive: 1,
-            frequency: 0
-          }
-        ],
-        2000: [
-          {
-            drive: 0,
-            frequency: 0
-          },
-          {
-            drive: 0,
-            frequency: music.toFrequency('E', music.NATURAL, 2)
-          },
-          {
-            drive: 1,
-            frequency: music.toFrequency('G', music.NATURAL, 2)
-          }
-        ],
-        2500: [
-          {
-            drive: 1,
-            frequency: 0
-          }
-        ],
-        3000: [
-          {
-            drive: 0,
-            frequency: 0
-          }
-        ]
+        0: {
+          0: music.toFrequency('C', music.NATURAL, 2),
+          1: music.toFrequency('E', music.NATURAL, 2)
+        },
+        500: {
+          1: 0
+        },
+        1000: {
+          0: music.toFrequency('D', music.NATURAL, 2),
+          1: music.toFrequency('F', music.NATURAL, 2)
+        },
+        1500: {
+          1: 0
+        },
+        2000: {
+          0: music.toFrequency('E', music.NATURAL, 2),
+          1: music.toFrequency('G', music.NATURAL, 2)
+        },
+        2500: {
+          1: 0
+        },
+        3000: {
+          0: 0
+        }
       };
 
       var deltas = [0, 500, 1000, 1500, 2000, 2500, 3000];
@@ -128,7 +90,7 @@ describe('Player', function() {
       p.load(notes);
 
       assert.deepEqual(p.deltas, deltas);
-      assert.deepEqual(p.queue, changes);
+      assert.deepEqual(p.changes, changes);
     });
   });
 });
