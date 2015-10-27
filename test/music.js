@@ -1,8 +1,8 @@
-var assert = require('assert')
+var assert = require('assert'),
     music = require('../lib/music');
 
 describe('music', function() {
-  describe('#toFrequency(note, accidental, octave)', function() {
+  describe('.toFrequency(note, accidental, octave)', function() {
     it('correctly converts notes to pitches', function() {
       assert.equal(Math.round(music.toFrequency('A', music.NATURAL, 4)), 440);
       assert.equal(Math.round(music.toFrequency('A', music.NATURAL, 0)), 27);
