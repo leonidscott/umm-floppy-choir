@@ -12,10 +12,10 @@ const int FREQUENCY_MIN = 27;
 const int FREQUENCY_MAX = 494;
 
 // number of drives
-const byte DRIVE_COUNT = 3;
+const byte DRIVE_COUNT = 8;
 
 // starting direction pin
-const byte STARTING_PIN = 2;
+const byte STARTING_PIN = 22;
 // we assume direction pins occur on evens and step pins occur on odds
 // (so for drive 0, direction is pin 2 and step is pin 3)
 
@@ -26,6 +26,11 @@ const byte STARTING_PIN = 2;
 byte directions[] = {
   LOW,
   LOW,
+  LOW,
+  LOW,
+  LOW,
+  LOW,
+  LOW,
   LOW
 };
 
@@ -33,11 +38,21 @@ byte directions[] = {
 int periods[] = {
   0,
   0,
+  0,
+  0,
+  0,
+  0,
+  0,
   0
 };
 
 // head positions (by drive)
 byte positions[] = {
+  0,
+  0,
+  0,
+  0,
+  0,
   0,
   0,
   0
@@ -48,12 +63,17 @@ byte positions[] = {
 int ticks[] = {
   0,
   0,
+  0,
+  0,
+  0,
+  0,
+  0,
   0
 };
 
 // serial command codes
 enum {
-  MESSAGE_READY = 000,
+  MESSAGE_OK = 000,
   MESSAGE_INVALID = 001,
   MESSAGE_ACTIVE = 010,
   MESSAGE_RESET_ALL = 011,
@@ -82,7 +102,7 @@ void setup() {
   Timer1.attachInterrupt(tick);
   
   // send a ready notification
-  Serial.write(MESSAGE_READY);
+  Serial.write(MESSAGE_OK);
   Serial.write(0);
 }
 
@@ -110,8 +130,8 @@ void process(byte command[4]) {
 
   switch (command[0]) {
     // simple ping
-  case MESSAGE_READY:
-    response[0] = MESSAGE_READY;
+  case MESSAGE_OK:
+    response[0] = MESSAGE_OK;
     break;
 
     // gets active drive count
