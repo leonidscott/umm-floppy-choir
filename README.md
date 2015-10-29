@@ -1,7 +1,7 @@
 #UMM Floppy Choir  
 ####Our goal is to build a floppy choir and develop a full stack of software to interact with it. 
 
-Presently, the floppy choir is composed of several floppy disk, powered by a standard computer 
+Presently, the floppy choir is composed of several floppy disks, powered by a standard computer 
 power supply, and controlled by an aurdino. We will build several sub-choirs that follow this model.
 
 Above the hardware, we have a RaspberryPi that we intend to use as a controller for all of the sub-choirs. It 
