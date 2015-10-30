@@ -4,15 +4,19 @@ var ARDUINO = process.env.ARDUINO;
 
 var fs = require('fs'),
     FloppyController = require('./lib/floppyController'),
+    MIDIParser = require('./lib/midiParser'),
     Player = require('./lib/player');
 
-var controller = new FloppyController(ARDUINO);
-var player = new Player(controller);
+fs.readFile('./music/Jon Batiste - Humanism.midi', function(error, data) {
+  var changes = MIDIParser.parse(data);
+  var controller = new FloppyController(ARDUINO);
+  var player = new Player(controller);
 
-var song = JSON.parse(fs.readFileSync('./music/under_pressure.json', 'utf8'));
+  console.log(changes);
 
-player.load(song);
+  player.loadChanges(changes);
 
-controller.once('ready', function() {
-  player.play();
+  controller.once('ready', function() {
+    player.play();
+  });
 });
