@@ -60,22 +60,22 @@ describe('Player', function() {
 
       var changes = {
         0: {
-          0: music.toFrequency('C', music.NATURAL, 2),
-          1: music.toFrequency('E', music.NATURAL, 2)
+          0: music.pitchToFrequency('C', music.NATURAL, 2),
+          1: music.pitchToFrequency('E', music.NATURAL, 2)
         },
         500: {
           1: 0
         },
         1000: {
-          0: music.toFrequency('D', music.NATURAL, 2),
-          1: music.toFrequency('F', music.NATURAL, 2)
+          0: music.pitchToFrequency('D', music.NATURAL, 2),
+          1: music.pitchToFrequency('F', music.NATURAL, 2)
         },
         1500: {
           1: 0
         },
         2000: {
-          0: music.toFrequency('E', music.NATURAL, 2),
-          1: music.toFrequency('G', music.NATURAL, 2)
+          0: music.pitchToFrequency('E', music.NATURAL, 2),
+          1: music.pitchToFrequency('G', music.NATURAL, 2)
         },
         2500: {
           1: 0

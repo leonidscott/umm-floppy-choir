@@ -8,6 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.3",
+    "midievents": "^1.0.0",
+    "midifile": "^1.0.1",
     "serialport": "^1.7.4",
     "socket.io": "^1.3.7"
   },

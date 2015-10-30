@@ -1,4 +1,4 @@
-.strong-pm
+*.pdf
 node_modules
 npm_debug.log
 public/libraries
