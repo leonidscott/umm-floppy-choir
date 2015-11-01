@@ -31,14 +31,14 @@ app.get('/getDriveCount', function(req, res) {
 
 io.on('connection', function(socket) {
   socket.on('set frequency', function(drive, frequency) {
-    controller.setFrequency(drive, frequency);
+    controller.setFrequency(drive - 1, frequency);
   });
 
 
 
   socket.on('set note', function(drive, note, accidental, octave) {
 
-    controller.setNote(drive, note, accidental, octave);
+    controller.setNote(drive - 1, note, accidental, octave);
     socket.broadcast.emit('note changed', drive, note, accidental, octave)
   });
 });
