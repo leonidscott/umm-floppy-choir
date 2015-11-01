@@ -7,7 +7,7 @@ var fs = require('fs'),
     MIDIParser = require('./lib/midiParser'),
     Player = require('./lib/player');
 
-fs.readFile('./music/Jon Batiste - Humanism.midi', function(error, data) {
+fs.readFile('./music/Super Mario Bros. Theme.mid', function(error, data) {
   var changes = MIDIParser.parse(data);
   var controller = new FloppyController(ARDUINO);
   var player = new Player(controller);
