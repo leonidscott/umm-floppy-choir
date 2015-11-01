@@ -25,14 +25,21 @@ var app = express(),
     io = socketio(server);
 
 app.use(express.static(__dirname + '/public'));
+app.get('/getDriveCount', function(req, res) {
+  res.send(JSON.stringify({driveCount: 4}));
+})
 
 io.on('connection', function(socket) {
   socket.on('set frequency', function(drive, frequency) {
     controller.setFrequency(drive, frequency);
   });
 
+
+
   socket.on('set note', function(drive, note, accidental, octave) {
+
     controller.setNote(drive, note, accidental, octave);
+    socket.broadcast.emit('note changed', drive, note, accidental, octave)
   });
 });
 

@@ -34,37 +34,42 @@
 		    <option value="G">G</option>
 		  </select>
 		</div>
-		<div class="hidden-xs col-sm-8 col-sm-offset-4">
-		  	<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'A'}" ng-click="note = 'A'">A</button>
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'B'}" ng-click="note = 'B'">B</button>
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'C'}" ng-click="note = 'C'">C</button>
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'D'}" ng-click="note = 'D'">D</button>
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'E'}" ng-click="note = 'E'">E</button>
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'F'}" ng-click="note = 'F'">F</button>
-			  <button type="button" class="btn btn-default" ng-class="{selected: note == 'G'}" ng-click="note = 'G'">G</button>
+		<div class="hidden-xs col-sm-12">
+			<div class="hidden-xs col-sm-6 column" ng-repeat="drive in drives">
+				<p class="">Drive {{drive.driveCount}}</p>
+				<p class="col-sm-7 text-center bigNote">{{drive.note}}{{(drive.flat)?'&#9837':''}}{{(drive.sharp)?'#':''}}</p>
+			  	<div class="btn-group col-sm-12" role="group" aria-label="...">
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'A'}" ng-mousedown="playNote(drive, 'A')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">A</button>
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'B'}" ng-mousedown="playNote(drive, 'B')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">B</button>
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'C'}" ng-mousedown="playNote(drive, 'C')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">C</button>
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'D'}" ng-mousedown="playNote(drive, 'D')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">D</button>
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'E'}" ng-mousedown="playNote(drive, 'E')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">E</button>
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'F'}" ng-mousedown="playNote(drive, 'F')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">F</button>
+				  <button type="button" class="btn btn-default" ng-class="{selected: drive.note == 'G'}" ng-mousedown="playNote(drive, 'G')" ng-mouseup="stopNote(drive)" ng-mouseleave="stopNote(drive)">G</button>
+				  
+				</div>
+				<div class="col-xs-12 col-sm-11">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+				      		<input type="checkbox" id="flat-box" ng-model="drive.flat" ng-click="drive.sharp = false" />
+				      		<label for="flat-box">&#9837</label>
+					</div>
+
+					<div class="col-xs-6 col-sm-6 col-md-6">
+					  	<input type="checkbox" id="sharp-box" ng-model="drive.sharp" ng-click="drive.flat = false" />
+					  	<label for="sharp-box">#</label>
+					</div>
+				</div>
 			</div>
-			Current note is: {{note}}{{(flat)?'&#9837':''}}{{(sharp)?'#':''}}
 		</div>
 		
-		<div class="col-xs-12 col-sm-6 col-sm-offset-4">
-			<div class="col-xs-6">
-		      		<input type="checkbox" id="flat-box" ng-model="flat" ng-click="sharp = false" />
-		      		<label for="flat-box">&#9837</label>
-			</div>
-
-			<div class="col-xs-6">
-			  	<input type="checkbox" id="sharp-box" ng-model="sharp" ng-click="flat = false" />
-			  	<label for="sharp-box">#</label>
-			</div>
-		</div>
+		
 		
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
   		  <button class="btn cool-buttons col-xs-6 col-sm-3 col-sm-offset-2" ng-click="start()">Start</button>
   		  <button class="btn cool-buttons col-xs-6 col-sm-3 col-sm-offset-2" ng-click="stop()">Stop</button>
-      </div>
+      </div> -->
     </div>
 	</div>
 
