@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row drive-grid">
+		<div class="col-xs-12 col-sm-6 col-lg-3 drive-cell" ng-repeat="drive in drives">
+			<p>Drive {{drive.number}}</p>
+			<p class="text-center bigNote">{{drive.note}}{{(drive.flat)?'&#9837;':''}}{{(drive.sharp)?'#':''}}</p>
+
+			<div class="btn-group drive-notes">
+			  <button type="button" class="btn btn-default" ng-repeat="note in notes" ng-mousedown="play(drive, note)" ng-mouseup="stop(drive)" ng-mouseleave="stop(drive)">{{note}}</button>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-6">
+      		<input type="checkbox" id="flat-box" ng-model="drive.flat" ng-click="drive.sharp = false" />
+      		<label for="flat-box">&#9837;</label>
+				</div>
+
+				<div class="col-xs-6">
+			  	<input type="checkbox" id="sharp-box" ng-model="drive.sharp" ng-click="drive.flat = false" />
+			  	<label for="sharp-box">#</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

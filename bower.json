@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "angular-route": "~1.4.7",
     "angular-socket-io": "~0.7.0"
   }
 }

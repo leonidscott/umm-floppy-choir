@@ -6,3 +6,12 @@
 .bigNote {
 	font-size: 80px;
 }
+
+.drive-cell {
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+.drive-notes {
+	margin-bottom: 0.5em;
+}
