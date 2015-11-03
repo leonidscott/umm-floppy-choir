@@ -27,8 +27,8 @@
 
       <div class="collapse navbar-collapse" id="header-links">
         <ul class="nav navbar-nav">
-          <li ng-class="isActive(display)" ng-repeat="display in displays">
-            <a href="{{display.route}}">{{display.label}}</a>
+          <li ng-class="{active: isActive(display)}" ng-repeat="display in displays">
+            <a href="#{{display.route}}">{{display.label}}</a>
           </li>
         </ul>
       </div>

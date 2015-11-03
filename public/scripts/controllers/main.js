@@ -14,15 +14,15 @@ angular.module('app').config(['$locationProvider', '$routeProvider', function($l
 	$scope.displays = [
 		{
 			label: 'Jukebox',
-			route: '#/jukebox'
+			route: '/jukebox'
 		},
 		{
 			label: 'Free play',
-			route: '#/free-play'
+			route: '/free-play'
 		}
 	];
 
-	$scope.isActive = function(path) {
-		return path === $location.path();
+	$scope.isActive = function(display) {
+		return display.route === $location.path();
 	};
 });
