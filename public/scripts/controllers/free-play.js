@@ -23,6 +23,41 @@ angular.module('app').controller('FreePlayController', function($scope, socket) 
     }
   });
 
+  //for testing purposes
+  $scope.drives = [{
+          number: 0,
+          note: 'A',
+          flat: false,
+          sharp: false,
+          octave: 3,
+          playing: false
+        },
+        {
+          number: 1,
+          note: 'A',
+          flat: false,
+          sharp: false,
+          octave: 3,
+          playing: false
+        },
+        {
+          number: 0,
+          note: 'A',
+          flat: false,
+          sharp: false,
+          octave: 3,
+          playing: false
+        },
+        {
+          number: 0,
+          note: 'A',
+          flat: false,
+          sharp: false,
+          octave: 3,
+          playing: false
+        }
+      ]
+
   socket.on('note changed', function(drive, note, accidental, octave) {
     $scope.drives[drive].note = note;
     $scope.drives[drive].flat = (accidental === -1);

@@ -15,3 +15,42 @@
 .drive-notes {
 	margin-bottom: 0.5em;
 }
+
+.jukebox {
+	font-size: 42px;
+}
+
+.jukebox-odd {
+	background-color: #e7e7e7;
+}
+
+.jukebox-odd:hover {
+	background-color: gray;
+}
+.jukebox-even {
+	background-color: white;
+}
+
+.jukebox-even:hover {
+	background-color: gray;
+}
+
+.play-icon {
+	padding-top: 5px;
+	color: #47D810;
+}
+
+.playing {
+	font-size: 42px;
+	margin-bottom: 25px;
+	z-index: 0;
+	font-weight: bold
+}
+
+.pause-icon {
+	left: 48%;
+    z-index: -1;
+    position: absolute;
+    color: #47D810;
+    font-size: 70px
+}

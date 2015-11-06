@@ -45,6 +45,15 @@ io.on('connection', function(socket) {
     controller.setNote(drive, note, accidental, octave);
     socket.broadcast.emit('note changed', drive, note, accidental, octave)
   });
+
+  socket.on('play song', function(songName) {
+    //call controller.playSong or something like that
+  });
+
+  socket.on('stop playing song', function() {
+    //call controller.stopSong or something like that
+  });
+
 });
 
 server.listen(PORT, function() {
