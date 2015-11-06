@@ -7,10 +7,32 @@ angular.module('app').controller('JukeboxController', function($scope, socket) {
 	$scope.showPause = false;
 	$scope.nothingIsPlaying = true;
 
+	socket.on("song changed", function(songName) {
+		if(songName == "") {
+			$scope.nothingIsPlaying = true;
+			if($scope.playing != "") {
+				$scope.songs.push($scope.playing);
+				$scope.playing = "";
+			}
+		} else {
+			for(var i = 0; i < $scope.songs.length; i++) {
+				if($scope.songs[i] == songName) {
+					$scope.nothingIsPlaying = false;
+					$scope.songs.splice(i, 1);
+					if($scope.playing != "") {
+						$scope.songs.push($scope.playing)
+					}
+					$scope.playing = songName;
+				}
+			}
+		}
+	})
+
+
+
 	$scope.startPlaying = function(index) {
 		$scope.nothingIsPlaying = false;
 		if($scope.playing != "") {
-			console.log("not equal to blank")
 			var temp = $scope.songs[index];
 			$scope.songs.splice(index, 1);
 			$scope.songs.push($scope.playing);
@@ -28,7 +50,6 @@ angular.module('app').controller('JukeboxController', function($scope, socket) {
 	$scope.stopSong = function() {
 		$scope.nothingIsPlaying = true;
 		if($scope.playing != "") {
-			console.log("lol " + $scope.playing)
 			$scope.songs.push($scope.playing);
 			$scope.playing = "";
 		}

@@ -48,10 +48,12 @@ io.on('connection', function(socket) {
 
   socket.on('play song', function(songName) {
     //call controller.playSong or something like that
+    io.emit('song changed', songName)
   });
 
   socket.on('stop playing song', function() {
     //call controller.stopSong or something like that
+    socket.broadcast.emit('song changed', '')
   });
 
 });
