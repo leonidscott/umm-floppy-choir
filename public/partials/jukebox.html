@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="row col-sm-12 playing" ng-click="stopSong()" ng-hide="nothingIsPlaying">
-  	<div class="text-center" ng-mouseenter="showPause = true" ng-mouseleave="showPause = false">{{playing}}</span></div>
-  		<span class="glyphicon glyphicon-play pause-icon"  aria-hidden="true" ng-hide="showPause"></span>
-  		<span class="glyphicon glyphicon-pause pause-icon" aria-hidden="true" ng-show="showPause"></span>
-  	</div>
+  <div class="row col-sm-12 playing" ng-click="stop()" ng-show="playing">
+  	<div class="text-center" ng-mouseenter="showPause = true" ng-mouseleave="showPause = false">{{playing.name}}</div>
+  	<span class="glyphicon glyphicon-play pause-icon"  aria-hidden="true" ng-hide="showPause"></span>
+  	<span class="glyphicon glyphicon-pause pause-icon" aria-hidden="true" ng-show="showPause"></span>
+  </div>
+
   <div class="row col-sm-12 jukebox" ng-repeat="song in songs">
-	  <div class="col-sm-12 jukebox" ng-class-odd="'jukebox-odd'" ng-class-even="'jukebox-even'" ng-click="startPlaying($index)">
-	  	<span class="col-sm-10">{{song}}</span>
+	  <div class="col-sm-12 jukebox" ng-class-odd="'jukebox-odd'" ng-class-even="'jukebox-even'" ng-click="start(song.id)">
+	  	<span class="col-sm-10">{{song.name}}</span>
 	  	<span class="glyphicon glyphicon-play col-sm-2 play-icon" aria-hidden="true"></span>
 	  </div>
   </div>

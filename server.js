@@ -17,9 +17,19 @@ var FloppyController = require('./lib/floppyController');
 var controller = new FloppyController(ARDUINO);
 
 
+// Set up the music library and the player:
+
+var Library = require('./lib/library'),
+    Player = require('./lib/player');
+
+var library = new Library(__dirname + '/music'),
+    player = new Player(controller);
+
+
 // Start the web interface and handle events:
 
 var express = require('express'),
+    fs = require('fs'),
     http = require('http'),
     socketio = require('socket.io');
 
@@ -36,6 +46,12 @@ io.on('connection', function(socket) {
     });
   });
 
+  socket.on('get song list', function() {
+    // @TODO this could fail... the library needs some getter function that
+    // makes sure the index is built
+    socket.emit('song list', library.files);
+  });
+
   socket.on('set frequency', function(drive, frequency) {
     controller.setFrequency(drive, frequency);
     socket.broadcast.emit('frequency changed', drive, frequency);
@@ -46,14 +62,24 @@ io.on('connection', function(socket) {
     socket.broadcast.emit('note changed', drive, note, accidental, octave)
   });
 
-  socket.on('play song', function(songName) {
-    //call controller.playSong or something like that
-    io.emit('song changed', songName)
+  socket.on('start playing song', function(id) {
+    // @TODO this could fail, see above
+    if (!(id in library.files)) {
+      socket.emit('error', 'Requested song does not exist.');
+    }
+
+    var file = library.files[id];
+
+    library.readFile(id).then(function(data) {
+      player.loadChanges(file.parser.parse(data));
+      player.play();
+
+      io.emit('song changed', file);
+    });
   });
 
   socket.on('stop playing song', function() {
-    //call controller.stopSong or something like that
-    socket.broadcast.emit('song changed', '')
+    socket.broadcast.emit('song changed', null)
   });
 
 });
