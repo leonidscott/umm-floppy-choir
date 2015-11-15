@@ -14,3 +14,12 @@ Once it is done, we want to put it in the Computer Science display, here at the 
 ###It's primitive, but it is already working!!
 ![It's working! Taken 2015/10/25]
 (https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/itsWorkingSmall.jpg)
+
+
+###Developer Setup
+1) Clone this repo
+2) Install and setup nvm
+   --> Install nvm from https://github.com/creationix/nvm
+   --> Run nvm install v0.12.7
+3) run `npm install`
+4) run `bower install`
