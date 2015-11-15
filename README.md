@@ -20,6 +20,6 @@ Once it is done, we want to put it in the Computer Science display, here at the 
 1. Clone this repo
 2. Install and setup nvm
    * Install nvm from https://github.com/creationix/nvm
-   * Run nvm install v0.12.7
-3. run `npm install`
-4. run `bower install`
+   * Run `nvm install v0.12.7`
+3. Run `npm install`
+4. Run `bower install`
