@@ -17,10 +17,18 @@ angular.module('app').controller('JukeboxController', function($scope, socket) {
 	});
 
 	$scope.start = function(id) {
-		socket.emit('start playing song', id);
+		socket.emit('start song', id);
+	};
+
+	$scope.play = function() {
+		socket.emit('play');
+	};
+
+	$scope.pause = function() {
+		socket.emit('pause');
 	};
 
 	$scope.stop = function() {
-		socket.emit('stop playing song');
+		socket.emit('stop');
 	};
 });

@@ -62,7 +62,7 @@ io.on('connection', function(socket) {
     socket.broadcast.emit('note changed', drive, note, accidental, octave)
   });
 
-  socket.on('start playing song', function(id) {
+  socket.on('start song', function(id) {
     // @TODO this could fail, see above
     if (!(id in library.files)) {
       socket.emit('error', 'Requested song does not exist.');
@@ -71,15 +71,25 @@ io.on('connection', function(socket) {
     var file = library.files[id];
 
     library.readFile(id).then(function(data) {
-      player.loadChanges(file.parser.parse(data));
+      player.load(file.parser.parse(data));
       player.play();
 
       io.emit('song changed', file);
     });
   });
 
-  socket.on('stop playing song', function() {
-    socket.broadcast.emit('song changed', null)
+  socket.on('play', function() {
+    player.play();
+  });
+
+  socket.on('pause', function() {
+    player.pause();
+  });
+
+  socket.on('stop', function() {
+    player.stop();
+
+    io.emit('song changed', null)
   });
 
 });
