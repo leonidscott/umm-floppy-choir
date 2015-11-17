@@ -25,7 +25,13 @@
 
         <span class="navbar-brand">UMM Floppy Choir</span>
       </div>
-
+      <div class="navbar-collapse hidden-xs">
+        <ul class="nav navbar-nav">
+          <li ng-class="{active: isActive(display)}" ng-repeat="display in displays">
+            <a href="#{{display.route}}">{{display.label}}</a>
+          </li>
+        </ul>
+      </div>
       <div class="navbar-collapse" ng-show="menu">
         <ul class="nav navbar-nav">
           <li ng-class="{active: isActive(display)}" ng-repeat="display in displays">
