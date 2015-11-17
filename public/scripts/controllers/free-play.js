@@ -2,7 +2,7 @@
 
 angular.module('app').controller('FreePlayController', function($scope, socket) {
   $scope.drives = [];
-  $scope.notes = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  $scope.notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 
   socket.emit('get drive count');
 

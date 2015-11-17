@@ -41,9 +41,7 @@ app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function(socket) {
   socket.on('get drive count', function() {
-    controller.getDriveCount().then(function(count) {
-      socket.emit('drive count', count);
-    });
+    socket.emit('drive count', controller.getDriveCount());
   });
 
   socket.on('get song list', function() {
