@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row col-sm-12 playing" ng-click="pause()" ng-show="playing">
-  	<div class="text-center" ng-mouseenter="showPause = true" ng-mouseleave="showPause = false">{{playing.name}}</div>
+  <div class="row col-sm-12 playing" ng-click="switchPauseOrPlay()" ng-show="playing">
+  	<div class="text-center">{{playing.name}}</div>
   	<span class="glyphicon glyphicon-play pause-icon"  aria-hidden="true" ng-hide="showPause"></span>
   	<span class="glyphicon glyphicon-pause pause-icon" aria-hidden="true" ng-show="showPause"></span>
   </div>

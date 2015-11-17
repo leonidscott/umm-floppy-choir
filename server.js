@@ -78,10 +78,12 @@ io.on('connection', function(socket) {
 
   socket.on('play', function() {
     player.play();
+    io.emit('song played');
   });
 
   socket.on('pause', function() {
     player.pause();
+    io.emit('song paused');
   });
 
   socket.on('stop', function() {
