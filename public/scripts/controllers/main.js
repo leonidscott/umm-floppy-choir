@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+angular.module('app').config([ '$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 	$routeProvider.when('/jukebox', {
 		templateUrl: 'partials/jukebox.html',
 		controller: 'JukeboxController'

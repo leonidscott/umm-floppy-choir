@@ -40,6 +40,7 @@ angular.module('app').controller('FreePlayController', function($scope, socket) 
     drive.note = note;
     drive.playing = true;
 
+    colorGreen();
     socket.emit('set note', drive.number, drive.note, accidental, 3);
   };
 
@@ -47,7 +48,18 @@ angular.module('app').controller('FreePlayController', function($scope, socket) 
     if (drive.playing) {
       drive.playing = false;
 
+
+      colorReset();
       socket.emit('set frequency', drive.number, 0);
     }
   };
+
+    //color changing for click debuging on mobile; called in play and stop
+    var colorGreen = function (){
+        $scope.customStyle = {"color":"green"};
+    }
+
+    var colorReset = function() {
+        $scope.customStyle = {"color":"inheret"};
+    }
 });

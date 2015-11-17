@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "angular-route": "~1.4.7",
-    "angular-socket-io": "~0.7.0"
+    "angular-socket-io": "~0.7.0",
+    "ngtouch": "~1.0.1"
   }
 }
