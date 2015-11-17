@@ -7,6 +7,11 @@
 	font-size: 80px;
 }
 
+.bigNotePlaying {
+	font-size: 80px;
+	background-image: url('../assests/notes.gif')
+}
+
 .drive-cell {
 	margin-bottom: 2em;
 	text-align: center;

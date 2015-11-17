@@ -17,7 +17,8 @@ angular.module('app').controller('FreePlayController', function($scope, socket) 
           flat: false,
           sharp: false,
           octave: 3,
-          playing: false
+          playing: false,
+          class: 'bigNote'
         };
       }
     }
@@ -29,6 +30,7 @@ angular.module('app').controller('FreePlayController', function($scope, socket) 
     $scope.drives[drive].sharp = (accidental === 1);
     $scope.drives[drive].octave = octave;
     $scope.drives[drive].playing = false;
+    $scope.drives[drive].class = 'bigNote';
   });
 
   $scope.play = function(drive, note) {
@@ -39,27 +41,18 @@ angular.module('app').controller('FreePlayController', function($scope, socket) 
 
     drive.note = note;
     drive.playing = true;
+    drive.class = 'bigNotePlaying'
 
-    colorGreen();
     socket.emit('set note', drive.number, drive.note, accidental, 3);
   };
 
   $scope.stop = function(drive) {
     if (drive.playing) {
       drive.playing = false;
+      drive.class = 'bigNote';
 
 
-      colorReset();
       socket.emit('set frequency', drive.number, 0);
     }
   };
-
-    //color changing for click debuging on mobile; called in play and stop
-    var colorGreen = function (){
-        $scope.customStyle = {"color":"green"};
-    }
-
-    var colorReset = function() {
-        $scope.customStyle = {"color":"inheret"};
-    }
 });
