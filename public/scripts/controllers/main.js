@@ -22,6 +22,8 @@ angular.module('app').config(['$locationProvider', '$routeProvider', function($l
 		}
 	];
 
+	$scope.menu = false;
+
 	$scope.isActive = function(display) {
 		return display.route === $location.path();
 	};
