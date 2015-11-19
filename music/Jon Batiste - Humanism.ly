@@ -46,7 +46,7 @@ bass = {
     }
     \relative c' {
       \low \low \low
-      r8 a r a r a r a r a r a r a r a r \tag
+      r8 c r c r c r c r c r c r c r c r \tag
     }
 
     \new Staff \with {
