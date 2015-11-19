@@ -12,15 +12,11 @@ tag = {
 }
 
 high = {
-  r8 g r g r g r g r fis r fis r fis r fis r f r f r f r f r g r g r g r g
-}
-
-mid = {
-  r8 c r c r c r c r c r c r c r c r c r c r c r c r d r d r d r d
+  r8 g r g r g r g r fis r fis r fis r fis r a r a r a r a r g r g r g r g
 }
 
 low = {
-  r8 a r a r a r a r a r a r a r a r a r a r a r a r b r b r b r b
+  r8 c r c r c r c r c r c r c r c r c r c r c r c r b r b r b r b
 }
 
 bass = {
@@ -43,14 +39,6 @@ bass = {
     \relative c'' {
       \high \high \high
       r8 g r g r g r g r fis r fis r fis r fis r \tag
-    }
-
-    \new Staff \with {
-      instrumentName = #"Inner mid"
-    }
-    \relative c' {
-      \mid \mid \mid
-      r8 c r c r c r c r c r c r c r c r \tag
     }
 
     \new Staff \with {
