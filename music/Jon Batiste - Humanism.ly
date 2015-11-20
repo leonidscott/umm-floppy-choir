@@ -12,11 +12,15 @@ tag = {
 }
 
 high = {
-  r8 g r g r g r g r fis r fis r fis r fis r a r a r a r a r g r g r g r g
+  r8 g r g r g r g r fis r fis r fis r fis r f r f r f r f r g r g r g r g
+}
+
+mid = {
+  r8 c r c r c r c r c r c r c r c r c r c r c r c r d r d r d r d
 }
 
 low = {
-  r8 c r c r c r c r c r c r c r c r c r c r c r c r b r b r b r b
+  r8 a r a r a r a r a r a r a r a r a r a r a r a r b r b r b r b
 }
 
 bass = {
@@ -26,15 +30,31 @@ bass = {
 \score {
   <<
     \partial 8
+
     \new Staff \with {
-      instrumentName = #"Melody"
+      instrumentName = #"Melody 1"
     }
     \relative c'' {
       \melody \tag
     }
 
     \new Staff \with {
-      instrumentName = #"Inner high"
+      instrumentName = #"Melody 2"
+    }
+    \relative c'' {
+      \melody \tag
+    }
+
+    \new Staff \with {
+      instrumentName = #"Inner 1"
+    }
+    \relative c'' {
+      \low \low \low
+      r8 a r a r a r a r a r a r a r a r \tag
+    }
+
+    \new Staff \with {
+      instrumentName = #"Inner 2"
     }
     \relative c'' {
       \high \high \high
@@ -42,15 +62,24 @@ bass = {
     }
 
     \new Staff \with {
-      instrumentName = #"Inner low"
+      instrumentName = #"Inner 3"
     }
     \relative c' {
-      \low \low \low
+      \mid \mid \mid
       r8 c r c r c r c r c r c r c r c r \tag
     }
 
     \new Staff \with {
-      instrumentName = #"Bass"
+      instrumentName = #"Bass 1"
+    }
+    \relative c {
+      \clef bass
+      \bass \bass \bass
+      r8 a8 r4 a8 r4 e'8 dis d r4 d8 r4 d8 r \tag
+    }
+
+    \new Staff \with {
+      instrumentName = #"Bass 2"
     }
     \relative c {
       \clef bass
@@ -67,3 +96,4 @@ bass = {
     }
   }
 }
+
