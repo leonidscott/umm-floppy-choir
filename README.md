@@ -2,18 +2,20 @@
 ####Our goal is to build a floppy choir and develop a full stack of software to interact with it. 
 
 Presently, the floppy choir is composed of several floppy disks, powered by a standard computer 
-power supply, and controlled by an aurdino. We will build several sub-choirs that follow this model.
+power supply, and controlled by an aurdino.
 
-Above the hardware, we have a RaspberryPi that we intend to use as a controller for all of the sub-choirs. It 
-communicates by sending serial to each of the aurdinos. The RaspberryPi will also act as a web server. Presenlty we 
-are running a Node server and are working on an angular front end.
+Above the hardware, we have a RaspberryPi that is used as a controller for all of the choir and as a webserver. It 
+communicates by sending serial to each of the aurdinos. The RaspberryPi also uses node to serve the angular front end.
+
+[Full Stack Diagram]
+(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/Choir2015-11-20(small).jpg)
 
 Once it is done, we want to put it in the Computer Science display, here at the University of Minnesota, Morris.
 
 
-###It's primitive, but it is already working!!
+###It has several drives and it works pretty well!!
 ![It's working! Taken 2015/10/25]
-(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/itsWorkingSmall.jpg)
+(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/Choir2015-11-20(small).jpg)
 
 
 ###Full Developer Setup
@@ -28,13 +30,13 @@ Once it is done, we want to put it in the Computer Science display, here at the 
   * Omit *ARDUINO=/dev/ttyACM0* if you don't happen to have the floppy choir with you
 
 ###Quick Startup
-1. git pull
+1. `git pull`
 2. Run `nvm install v0.12.7`
-3. node server.js` 
+3. `node server.js` 
 
 ###Updating Code on the Raspberry Pi
-1. ssh into the pi
-2. cd /srv/app
-2. git pull
-3. sudo systemctrl restart floppy-control-app
+1. ssh into the raspberry pi
+2. `cd /srv/app`
+2. `git pull`
+3. `sudo systemctrl restart floppy-control-app`
 
