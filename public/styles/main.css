@@ -1,8 +1,17 @@
 .selected {
-	background-color: white !important;
+	/*background-color: white; /*Don't use important!!*/
 	background-image: none;
 }
+html, body{
+	background-color: black;
+	/*color: #ffffde;*/
+}
+body{
+	color: #f3cc4b;
+	font-size: 1.9em;
+}
 
+/*Free Play*/
 .bigNote {
 	font-size: 80px;
 }
@@ -21,23 +30,19 @@
 	margin-bottom: 0.5em;
 }
 
-.jukebox {
-	font-size: 42px;
+/*Jukebox*/
+#jukebox-banner{
+	width: 100%;
+}
+.jukebox-entry {
+	padding:.2em;
+	margin:.2em;
+	border-radius: .2em;
+	background-color: #2f4f4f;
 }
 
-.jukebox-odd {
-	background-color: #e7e7e7;
-}
-
-.jukebox-odd:hover {
-	background-color: gray;
-}
-.jukebox-even {
-	background-color: white;
-}
-
-.jukebox-even:hover {
-	background-color: gray;
+.jukebox-entry:hover {
+	background-color: #004F3D;
 }
 
 .play-icon {
@@ -53,9 +58,44 @@
 }
 
 .pause-icon {
-	left: 48%;
-    z-index: -1;
     position: absolute;
     color: #47D810;
-    font-size: 70px
+    font-size: 70px;
+
+}
+.playPauseBtn{
+	height:60px;
+}
+
+/*Changing button styles: https://bootstrapbay.com/blog/bootstrap-button-styles/*/
+.btn {
+    padding: 7px 12px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+/*Big checkbox*/
+#sharp-box, #flat-box {
+	width: 1.1em;
+	height: 1.1em;
 }
