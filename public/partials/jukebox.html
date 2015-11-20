@@ -6,8 +6,8 @@
   </div>
 
   <div class="row col-sm-12">
-    <div class="list-group" ng-repeat="song in songs">
-      <button type="button" class="list-group-item" ng-click="start(song.id)">
+    <div class="list-group">
+      <button type="button" class="list-group-item" ng-click="start(song.id)" ng-repeat="song in songs">
         {{song.name}}
       </button>
     </div>
