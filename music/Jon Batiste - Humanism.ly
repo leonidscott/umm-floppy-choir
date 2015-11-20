@@ -86,6 +86,15 @@ bass = {
       \bass \bass \bass
       r8 a8 r4 a8 r4 e'8 dis d r4 d8 r4 d8 r \tag
     }
+
+    \new Staff \with {
+      instrumentName = #"Bass 3"
+    }
+    \relative c' {
+      \clef bass
+      \bass \bass \bass
+      r8 a8 r4 a8 r4 e'8 dis d r4 d8 r4 d8 r \tag
+    }
   >>
 
   \layout {}
