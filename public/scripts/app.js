@@ -12,6 +12,6 @@ angular.module('app', [
 		templateUrl: 'partials/free-play.html',
 		controller: 'FreePlayController'
 	}).otherwise({
-		redirectTo: '/jukebox'
+		redirectTo: '/free-play'
 	});
 }]);
