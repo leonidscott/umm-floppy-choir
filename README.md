@@ -16,7 +16,7 @@ Once it is done, we want to put it in the Computer Science display, here at the 
 (https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/itsWorkingSmall.jpg)
 
 
-###Developer Setup
+###Full Developer Setup
 1. Clone this repo: `git clone https://github.com/dstelljes/umm-floppy-choir.git`
 2. Install and setup nvm
    * Install nvm from https://github.com/creationix/nvm
@@ -26,3 +26,15 @@ Once it is done, we want to put it in the Computer Science display, here at the 
 5. Run `bower install` 
 6. Launch the server: `ARDUINO=/dev/ttyACM0 node server.js` 
   * Omit *ARDUINO=/dev/ttyACM0* if you don't happen to have the floppy choir with you
+
+###Quick Startup
+1. git pull
+2. Run `nvm install v0.12.7`
+3. node server.js` 
+
+###Updating Code on the Raspberry Pi
+1. ssh into the pi
+2. cd /srv/app
+2. git pull
+3. sudo systemctrl restart floppy-control-app
+
