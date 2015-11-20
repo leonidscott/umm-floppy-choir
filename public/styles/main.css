@@ -1,15 +1,20 @@
 .selected {
-	/*background-color: white; /*Don't use important!!*/
 	background-image: none;
 }
 html, body{
 	background-color: black;
-	/*color: #ffffde;*/
 }
 body{
 	color: #f3cc4b;
 	font-size: 1.9em;
 }
+a{
+	color: #f3cc4b;
+}
+a:hover{
+	color: white;
+}
+
 
 /*Free Play*/
 .bigNote {
@@ -38,16 +43,16 @@ body{
 	padding:.2em;
 	margin:.2em;
 	border-radius: .2em;
-	background-color: #2f4f4f;
+	background-color: #661a0e;
 }
 
 .jukebox-entry:hover {
-	background-color: #004F3D;
+	background-color: #934429;
 }
 
 .play-icon {
 	padding-top: 5px;
-	color: #47D810;
+	color:  #F6EF9F;
 }
 
 .playing {
@@ -59,7 +64,6 @@ body{
 
 .pause-icon {
     position: absolute;
-    color: #47D810;
     font-size: 70px;
 
 }
