@@ -46,15 +46,7 @@ bass = {
     }
 
     \new Staff \with {
-      instrumentName = #"Inner 1"
-    }
-    \relative c'' {
-      \low \low \low
-      r8 a r a r a r a r a r a r a r a r \tag
-    }
-
-    \new Staff \with {
-      instrumentName = #"Inner 2"
+      instrumentName = #"Inner high"
     }
     \relative c'' {
       \high \high \high
@@ -62,7 +54,7 @@ bass = {
     }
 
     \new Staff \with {
-      instrumentName = #"Inner 3"
+      instrumentName = #"Inner mid"
     }
     \relative c' {
       \mid \mid \mid
@@ -70,9 +62,17 @@ bass = {
     }
 
     \new Staff \with {
+      instrumentName = #"Inner low"
+    }
+    \relative c' {
+      \low \low \low
+      r8 a r a r a r a r a r a r a r a r \tag
+    }
+
+    \new Staff \with {
       instrumentName = #"Bass 1"
     }
-    \relative c {
+    \relative c' {
       \clef bass
       \bass \bass \bass
       r8 a8 r4 a8 r4 e'8 dis d r4 d8 r4 d8 r \tag
@@ -81,7 +81,7 @@ bass = {
     \new Staff \with {
       instrumentName = #"Bass 2"
     }
-    \relative c {
+    \relative c' {
       \clef bass
       \bass \bass \bass
       r8 a8 r4 a8 r4 e'8 dis d r4 d8 r4 d8 r \tag
