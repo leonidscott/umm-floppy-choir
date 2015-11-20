@@ -8,14 +8,14 @@ Above the hardware, we have a RaspberryPi that is used as a controller for all o
 communicates by sending serial to each of the aurdinos. The RaspberryPi also uses node to serve the angular front end.
 
 [Full Stack Diagram]
-(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/Choir2015-11-20(small).jpg)
+(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/floppyStack2015-11-20.JPG)
 
 Once it is done, we want to put it in the Computer Science display, here at the University of Minnesota, Morris.
 
 
 ###It has several drives and it works pretty well!!
 ![It's working! Taken 2015/10/25]
-(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/Choir2015-11-20(small).jpg)
+(https://raw.githubusercontent.com/dstelljes/umm-floppy-choir/master/documentation/floppyChoir2015-11-20(small).jpg)
 
 
 ###Full Developer Setup
