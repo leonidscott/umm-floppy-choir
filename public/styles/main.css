@@ -55,17 +55,9 @@ a:hover{
 	color:  #F6EF9F;
 }
 
-.playing {
-	font-size: 42px;
-	margin-bottom: 25px;
-	z-index: 0;
-	font-weight: bold
-}
-
 .pause-icon {
     position: absolute;
     font-size: 70px;
-
 }
 .playPauseBtn{
 	height:60px;
