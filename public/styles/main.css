@@ -31,7 +31,6 @@ a:hover{
 
 .drive-cell {
 	margin-bottom: 2em;
-	text-align: center;
 }
 
 .drive-notes {
@@ -55,10 +54,6 @@ a:hover{
 
 marquee{
 	font-size: 2em;
-}
-
-.play-icon {
-	color:  #F6EF9F;
 }
 
 .pause-icon {
