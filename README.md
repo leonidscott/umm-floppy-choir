@@ -38,5 +38,5 @@ Once it is done, we want to put it in the Computer Science display, here at the 
 1. ssh into the raspberry pi
 2. `cd /srv/app`
 2. `git pull`
-3. `sudo systemctrl restart floppy-control-app`
+3. `sudo systemctl restart floppy-control-app`
 
