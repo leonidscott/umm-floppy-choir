@@ -14,9 +14,12 @@ a{
 a:hover{
 	color: white;
 }
+.bottomNav{
+	padding: 3em;
+}
 
 
-/*Free Play*/
+/******************Free Play******************/
 .bigNote {
 	font-size: 80px;
 }
@@ -35,12 +38,12 @@ a:hover{
 	margin-bottom: 0.5em;
 }
 
-/*Jukebox*/
+/********************Jukebox******************/
 #jukebox-banner{
 	width: 100%;
 }
 .jukebox-entry {
-	padding:.2em;
+	padding:.2em 0em;
 	margin:.2em;
 	border-radius: .2em;
 	background-color: #661a0e;
@@ -50,18 +53,20 @@ a:hover{
 	background-color: #934429;
 }
 
+marquee{
+	font-size: 2em;
+}
+
 .play-icon {
-	padding-top: 5px;
 	color:  #F6EF9F;
 }
 
 .pause-icon {
-    position: absolute;
-    font-size: 70px;
+		padding: .5em;
+		border-radius: 30px;
+		border: 3px solid;
 }
-.playPauseBtn{
-	height:60px;
-}
+
 
 /*Changing button styles: https://bootstrapbay.com/blog/bootstrap-button-styles/*/
 .btn {
