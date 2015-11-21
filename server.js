@@ -41,7 +41,9 @@ app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function(socket) {
   socket.on('get drive count', function() {
-    socket.emit('drive count', controller.getDriveCount());
+    var driveCount = controller.getDriveCount();
+    console.info('%d floppy drives have been attached.', driveCount);
+    socket.emit('drive count', driveCount);
   });
 
   socket.on('get song list', function() {
