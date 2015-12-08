@@ -6,16 +6,20 @@
     "url": "git+https://github.com/dstelljes/umm-floppy-choir.git"
   },
   "license": "MIT",
+  "engines": {
+    "node": "5.1.1"
+  },
   "dependencies": {
     "express": "^4.13.3",
     "midievents": "^1.0.0",
-    "midifile": "^1.0.1",
-    "serialport": "^1.7.4",
+    "midifile": "^1.0.2",
+    "observed": "^1.1.1",
+    "serialport": "^2.0.5",
     "socket.io": "^1.3.7"
   },
   "devDependencies": {
-    "bower": "^1.6.3",
-    "jsdoc": "^3.3.3",
-    "mocha": "^2.3.3"
+    "bower": "^1.7.0",
+    "jsdoc": "^3.4.0",
+    "mocha": "^2.3.4"
   }
 }
