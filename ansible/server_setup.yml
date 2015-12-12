@@ -1,7 +1,7 @@
 ---
 - hosts: servers
   vars:
-    node_version: node_0.12
+    node_version: node_5.x
     node_repo: "deb https://deb.nodesource.com/{{ node_version }} {{ ansible_distribution_release }} main"
   remote_user: pi
   become: yes
@@ -34,9 +34,16 @@
     with_items:
     - build-essential
     - git
+    - iptables-persistent
     - nginx
     - nodejs
     - python
+  - name: copy firewall rules
+    template:
+      dest: /etc/iptables/rules.v4
+      src: templates/iptables-rules.j2
+  - name: load firewall rules
+    shell: iptables-restore < /etc/iptables/rules.v4
   - name: create app directory
     file:
       group: pi

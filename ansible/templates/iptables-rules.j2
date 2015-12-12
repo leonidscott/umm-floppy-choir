@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+
+*filter
+
+# accept loopback traffic on lo
+-A INPUT -i lo -j ACCEPT
+-A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
+
+# accept established inbound connections
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# accept SSH from Dungeon IPs
+-A INPUT -p tcp --dport 22 -s 146.57.33.0/24 -j ACCEPT
+
+# accept HTTP
+-A INPUT -p tcp --dport 80 -j ACCEPT
+
+# reject inbound/forward by default
+-A INPUT -j REJECT
+-A FORWARD -j REJECT
+
+# allow outbound for now, though this may change
+-A OUTPUT -j ACCEPT
+
+COMMIT
