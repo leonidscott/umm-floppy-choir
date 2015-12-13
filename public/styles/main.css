@@ -20,17 +20,19 @@ a:hover{
 
 
 /******************Free Play******************/
-.bigNote {
-	font-size: 80px;
-}
-
-.bigNotePlaying {
-	font-size: 80px;
-	background-image: url('../assests/notes.gif')
-}
 
 .drive-cell {
 	margin-bottom: 2em;
+}
+
+.drive-note {
+	font-size: 5em;
+	line-height: 1;
+	height: 1em;
+}
+
+.drive-note.playing {
+	background-image: url('../assets/notes.gif');
 }
 
 .drive-notes {
@@ -88,10 +90,4 @@ marquee{
 .btn-primary:active, .btn-primary.active {
     background: #007299;
     box-shadow: none;
-}
-
-/*Big checkbox*/
-#sharp-box, #flat-box {
-	width: 1.1em;
-	height: 1.1em;
 }

@@ -2,25 +2,38 @@
   <div class="row drive-grid">
 		<div class="col-xs-12 col-sm-6 col-lg-3 drive-cell text-center" ng-repeat="drive in drives">
 			<p>Drive {{drive.number}}</p>
-			<p class="text-center {{drive.class}}" ng-style="customStyle">{{drive.note}}{{(drive.flat)?'&#9837;':''}}{{(drive.sharp)?'#':''}}</p>
+			<p class="drive-note text-center" ng-class="{ playing: drive.playing }">
+        <span ng-if="drive.playing">
+          {{drive.note}}
+
+          <span ng-switch on="drive.accidental">
+            <span ng-switch-when="-1">&#9837;</span>
+            <span ng-switch-when="1">&#9839;</span>
+          </span>
+        </span>
+      </p>
 
 			<div class="btn-group drive-notes">
-			  <!-- <button type="button" class="btn btn-default" ng-repeat="note in notes" ng-mousedown="play(drive, note)" ng-mouseup="stop(drive)" ng-mouseleave="stop(drive)">{{note}}</button> -->
 			  <button type="button" class="btn btn-default" ng-repeat="note in notes"
           ng-mousedown="play(drive, note)" ng-touchstart="play(drive, note)"
           ng-mouseup="stop(drive)" ng-mouseleave="stop(drive)" ng-touchend="stop(drive)">
-          {{note}}</button>
+          {{note}}
+        </button>
 			</div>
 
 			<div class="row">
 				<div class="col-xs-6">
-      		<input type="checkbox" id="flat-box" ng-model="drive.flat" ng-click="drive.sharp = false" />
-      		<label for="flat-box">&#9837;</label>
+      		<label>
+            <input type="checkbox" ng-true-value="-1" ng-model="drive.accidental" />
+      		  &#9837;
+          </label>
 				</div>
 
 				<div class="col-xs-6">
-			  	<input type="checkbox" id="sharp-box" ng-model="drive.sharp" ng-click="drive.flat = false" />
-			  	<label for="sharp-box">#</label>
+      		<label>
+            <input type="checkbox" ng-true-value="1" ng-model="drive.accidental" />
+      		  &#9839;
+          </label>
 				</div>
 			</div>
 		</div>
@@ -28,9 +41,8 @@
 
 	<div class="text-center bottomNav">
   	<a href="#/jukebox">
-      <img src="../assests/jukeboxSmall.png" alt="jukebox">
+      <img src="../assets/jukebox-small.png" alt="jukebox">
       <p>Floppy Choir Jukebox<p>
     </a>
 	</div>
-
 </div>
