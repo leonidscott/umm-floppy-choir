@@ -21,6 +21,7 @@ app.use(express.static(__dirname + '/public'));
 var im = new InterfaceManager();
 im.attachDevice(ARDUINO);
 im.attachSocket(io);
+im.openLibrary(__dirname + '/music');
 
 server.listen(PORT, function() {
   console.info('Server listening on port %d.', PORT);
