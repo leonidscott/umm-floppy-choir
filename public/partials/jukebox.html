@@ -6,7 +6,7 @@
   </div>
 
   <div class="row">
-    <div class="playing" ng-click="switchPauseOrPlay()" ng-show="playing">
+    <div class="playing" ng-click="pause()" ng-show="playing">
       <div class="col-md-11">
         <marquee behavior="scroll" direction="left">{{playing.name}}</marquee>
       </div>
@@ -19,7 +19,7 @@
 
   <div class="row">
     <div class="col-sm-12 jukebox" ng-repeat="song in songs">
-  	  <div class="col-xs-12 jukebox-entry" ng-click="start(song.id)">
+  	  <div class="col-xs-12 jukebox-entry" ng-click="queue(song.id)">
   	  	<span class="col-xs-12">{{song.name}}</span>
   	  </div>
     </div>
@@ -28,5 +28,4 @@
   <div class="text-center bottomNav">
     <a href="#/free-play">Floppy Choir Free Play</a>
   </div>
-
 </div>
