@@ -4,7 +4,6 @@ angular.module('app').controller('JukeboxController', function($scope, socket) {
 
 	$scope.queue = function(id) {
 		socket.emit('queue', id);
-		$scope.showPause = true;
 	};
 
 	$scope.stop = function() {

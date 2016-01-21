@@ -1,23 +1,27 @@
-.selected {
-	background-image: none;
-}
-html, body{
+html, body {
 	background-color: black;
 }
-body{
+
+body {
 	color: #f3cc4b;
 	font-size: 1.9em;
 }
-a{
+
+a {
 	color: #f3cc4b;
 }
+
 a:hover{
 	color: white;
 }
-.bottomNav{
-	padding: 3em;
+
+.bottom-nav {
+	margin-top: 3em;
 }
 
+.selected {
+	background-image: none;
+}
 
 /******************Free Play******************/
 
@@ -40,28 +44,32 @@ a:hover{
 }
 
 /********************Jukebox******************/
-#jukebox-banner{
-	width: 100%;
+
+.control-icon {
+	border: 3px solid;
+	border-radius: 50%;
+	cursor: pointer;
+	display: inline-block;
+	padding: 0.5em;
 }
+
 .jukebox-entry {
-	padding:.2em 0em;
-	margin:.2em;
-	border-radius: .2em;
 	background-color: #661a0e;
+	border-radius: 0.2em;
+	margin: 0.2em 0;
+	padding: 0.2em 0;
 }
 
 .jukebox-entry:hover {
 	background-color: #934429;
 }
 
-marquee{
+.playing-banner {
 	font-size: 2em;
 }
 
-.pause-icon {
-		padding: .5em;
-		border-radius: 30px;
-		border: 3px solid;
+#jukebox-banner {
+	width: 100%;
 }
 
 

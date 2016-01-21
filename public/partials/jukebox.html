@@ -5,27 +5,22 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="playing" ng-click="pause()" ng-show="playing">
-      <div class="col-md-11">
-        <marquee behavior="scroll" direction="left">{{playing.name}}</marquee>
-      </div>
-      <div class="text-center">
-      	<p class="glyphicon glyphicon-play pause-icon" ng-hide="showPause"></p>
-      	<p class="glyphicon glyphicon-pause pause-icon" ng-show="showPause"></p>
-      </div>
-    </div>
+  <div class="playing text-center" ng-show="playing">
+    <marquee behavior="scroll" class="playing-banner" direction="left">
+      {{playing.name}}
+    </marquee>
+
+    <span ng-class="{ 'control-icon glyphicon': true, 'glyphicon-pause': !paused, 'glyphicon-play': paused }" ng-click="paused ? play() : pause()">
+    </span>
   </div>
 
-  <div class="row">
-    <div class="col-sm-12 jukebox" ng-repeat="song in songs">
-  	  <div class="col-xs-12 jukebox-entry" ng-click="queue(song.id)">
-  	  	<span class="col-xs-12">{{song.name}}</span>
-  	  </div>
-    </div>
+  <div class="jukebox" ng-repeat="song in songs">
+	  <div class="jukebox-entry" ng-click="queue(song.id)">
+	  	{{song.name}}
+	  </div>
   </div>
 
-  <div class="text-center bottomNav">
+  <div class="text-center bottom-nav">
     <a href="#/free-play">Floppy Choir Free Play</a>
   </div>
 </div>
