@@ -19,15 +19,17 @@ Once it is done, we want to put it in the Computer Science display, here at the 
 
 
 ###Full Developer Setup
-1. Clone this repo: `git clone https://github.com/dstelljes/umm-floppy-choir.git`
+1. Clone this repo: `git clone https://github.com/morrislenny/umm-floppy-choir.git` (this was updated because the owner was transfered)
 2. Install and setup nvm
    * Install nvm from https://github.com/creationix/nvm
-   * Run `nvm install v0.12.7`
-3. Run `npm install`
-4. If you don't have bower installed run `npm install -g bower`
-5. Run `bower install` 
-6. Launch the server: `ARDUINO=/dev/ttyACM0 node server.js` 
-  * Omit *ARDUINO=/dev/ttyACM0* if you don't happen to have the floppy choir with you
+   * Run `nvm install v0.12.7`  
+3. `cd umm-floppy-choir`
+4. Run `npm install`
+5. If you don't have bower installed run `npm install -g bower`
+6. Run `bower install` 
+7. Launch the server: `ARDUINO=/dev/ttyACM0 node server.js` 
+  * Omit *ARDUINO=/dev/ttyACM0* if you don't happen to have the floppy choir with you  
+  * Or more clearly, if you don't have the drives, `node server.js`  
 
 ###Quick Startup
 1. `git pull`
