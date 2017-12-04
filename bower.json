@@ -4,8 +4,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular-route": "~1.4.7",
-    "angular-socket-io": "~0.7.0",
-    "ngtouch": "~1.0.1"
+    "angular": "1.6.7",
+    "angular-route": "1.6.7",
+    "angular-socket-io": "0.7.0",
+    "ngtouch": "1.0.2"
   }
 }

@@ -4,7 +4,7 @@
 			<p>Drive {{drive.number}}</p>
 			<p class="drive-note text-center" ng-class="{ playing: drive.playing }">
         <span ng-if="drive.playing">
-          {{drive.note}}
+          {{ drive.note }}
 
           <span ng-switch on="drive.accidental">
             <span ng-switch-when="-1">&#9837;</span>
