@@ -278,5 +278,3 @@ byte getDirectionPin(byte drive) {
 byte getStepPin(byte drive) {
   return STARTING_PIN + (drive * 2) + 1;
 }
-
-
