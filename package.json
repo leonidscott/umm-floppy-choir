@@ -10,7 +10,7 @@
     "node": "6.12.0"
   },
   "dependencies": {
-    "express": "4.16.2",
+    "express": "4.18.2",
     "midievents": "1.0.1",
     "midifile": "1.0.4",
     "observed": "1.1.2",
